@@ -1,0 +1,115 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mb-4 {
+    margin-bottom: 40px;
+}
+
+.mb-2 {
+    margin-top: 20px;
+}
+.jcc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+display: none;
+}
+
+.show {
+display: block;
+}
+
+
+
+.square {
+    border: 2px solid black;
+    height: 30px;
+    width: 30px;
+}
+
+.line {
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+#game i {
+    padding: 6px;
+    font-size: 12px;
+}
+
+
+
+/* Small Screen 1  */
+@media screen and (min-width: 375px) {
+    .square {
+    border: 2px solid black;
+    height: 35px;
+    width: 35px;
+    }
+
+    #game i {
+    padding: 6px;
+    font-size: 18px;
+    }
+}
+
+/* Small Screen 2  */
+@media screen and (min-width: 425px) {
+    .square {
+    border: 2px solid black;
+    height: 40px;
+    width: 40px;
+    }
+
+    #game i {
+    padding: 6px;
+    font-size: 20px;
+    }
+}
+
+
+
+/* Large Screen or landscape phones */
+@media screen and (min-width: 576px) {
+    .square {
+    border: 2px solid black;
+    height: 55px;
+    width: 55px;
+    }
+    #game i {
+    padding: 10px;
+    font-size: 26px;
+    }
+}
+
+/* Tablets and larger */
+@media screen and (min-width: 768px) {
+    .square {
+    border: 2px solid black;
+    height: 70px;
+    width: 70px;
+    }
+    #game i {
+    padding: 10px;
+    font-size: 40px;
+    }
+}
+
+/* Laptops and Desktops */
+@media screen and (min-width: 992px) {
+}
+
+/* Large Desktops, Tv screens & Projectors */
+@media screen and (min-width: 1200px) {
+}
