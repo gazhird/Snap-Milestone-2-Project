@@ -43,6 +43,11 @@ body {
     width: 38px;
 }
 
+.square:hover {
+background-color: yellow;
+}
+
+
 #game i {
     padding: 4px 6px 4px 4px;
     font-size: 24px;

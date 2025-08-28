@@ -25,7 +25,7 @@ function difficultyLevel(difficulty) {
         for (let row of gridRows) {
                 grid += `<div class="line" >`;
             for (let i = 1; i <= cols; i++) {
-                grid += `<div id="${row}${i}" class="square" ></div>`;
+                grid += `<div   onclick="squareClicked(${row}${i})" id="${row}${i}" class="square" ></div>`;
             }
                 grid +=  `</div>`;
                 document.getElementById('grid').innerHTML = grid;
@@ -51,7 +51,7 @@ function difficultyLevel(difficulty) {
         for (let row of gridRows) {
                 grid += `<div class="line" >`;
             for (let i = 1; i <= cols; i++) {
-                grid += `<div id="${row}${i}" class="square" ></div>`;
+                grid += `<div   onclick="squareClicked(${row}${i})" id="${row}${i}" class="square" ></div>`;
             }
                 grid +=  `</div>`;
                 document.getElementById('grid').innerHTML = grid;
@@ -114,7 +114,7 @@ function shuffleArray(squaresArray, iconLimit) {
     }
     
    
-    let Pairs = new Set();  
+        var pairsArray = [];
     for (let x = 1; x <= iconLimit; x++) {
         let removed = squaresArray.splice(0, 2);
         let id1 = removed[0];
@@ -123,19 +123,19 @@ function shuffleArray(squaresArray, iconLimit) {
         
         
          
-        Pairs.add(id1 + '+' + id2);
         
-
+        
+        pairsArray.push(id1 + '+' + id2);
        
 
         document.getElementById(id1).innerHTML = '<div><i class="fa-solid ' + iconsObject[icon] + ' "></i></div>';
         document.getElementById(id2).innerHTML = '<div><i class="fa-solid ' + iconsObject[icon] + ' "></i></div>';
-        if (Pairs.size == iconLimit) {
-        matchingPairs(Pairs, ); // sends correct pair combinations to for interrogation 
-        } 
+        if (pairsArray.length == iconLimit) {
+        console.log('pairs length: ', pairsArray.length);
+        console.log('pairs array: ', pairsArray);
+        window.sessionStorage.setItem('pairsArray', pairsArray);
+        }
         
-        
-
     
 }
 
@@ -145,29 +145,11 @@ function shuffleArray(squaresArray, iconLimit) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var getTwo = [];
     var clicks = 0;
     function squareClicked(id) {
         clicks += 1;
-        // console.log('clicks:', clicks);
-
-        
+        console.log('clicks:', clicks);
         if (clicks === 1) {
          var first = id.id;
          getTwo.push(first);
@@ -182,38 +164,42 @@ function shuffleArray(squaresArray, iconLimit) {
         window.sessionStorage.setItem('check1', result1);
         window.sessionStorage.setItem('check2', result2);
         document.getElementById(id.id).style.backgroundColor = 'yellow'; 
+        let pairsArray = window.sessionStorage.getItem('pairsArray');
+        let check1 = window.sessionStorage.getItem('check1');
+        let check2 = window.sessionStorage.getItem('check2');
+
+            let s = 0, e = 5;
+
+            for (let x = 1; x <= 50; x++) {
+                 let pairs = pairsArray.slice(s, e);
+                 
+                if (check1 == pairs || check2 == pairs) {
+                    console.log('winner!!!! you found a pair', first, second)
+
+                    document.getElementById(first).style.backgroundColor = 'green'
+                    document.getElementById(second).style.backgroundColor = 'green'
+                    continue
+                } else {
+                    s = s + 6;
+                    e = e + 6;
+                }
+                if (x == 18) {
+                    document.getElementById(first).style.backgroundColor = 'white'
+                    document.getElementById(second).style.backgroundColor = 'white'
+                }
+            }
+           
+
         } else {
         clicks = 0;
         getTwo = [];
-        document.getElementById(id.id).style.backgroundColor = 'red'; 
+        document.getElementById(id.id).style.backgroundColor = 'white'; 
         }
 
 
 
-        // if (getTwo.length < 2 && !getTwo.includes(id.id)) {
+       
 
 
     }
-
-
-
-    function matchingPairs(Pairs) {
-
-    console.log('pairs in MP', Pairs);
-
-    let check1 = window.sessionStorage.getItem('check1');
-    let check2 = window.sessionStorage.getItem('check2');
-
-    console.log('from SS / ck1', check1, 'ck2', check2 );
-
-    
-
-
-
-    }
-
-
-
-
-
 
