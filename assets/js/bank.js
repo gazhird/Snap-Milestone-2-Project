@@ -1,10 +1,9 @@
-
 let difficulty, cols, frame, grid = '', gridColumns, squaresArray, iconLimit;
 
 function loaded(value) {
 if (value == true) {
 difficultyLevel('easy');
-} else if (value == false) {
+} else {
 console.log('Fault: Not loaded');
 }
 }
@@ -90,15 +89,18 @@ function difficultyLevel(difficulty) {
 
 
 
+
+
+
 // firstly this function contains all the Font Awesome icon names in a object 
 // Then uses a shuffle loop i found online at ...
 
 
-
+const pairs = [];
 function shuffleArray(squaresArray, iconLimit) {
 
     
-        
+    
 
         const iconsObject = { icon1: 'fa-fish', icon2: 'fa-feather', icon3: 'fa-hippo', icon4: 'fa-crow', icon5: 'fa-dragon', icon6: 'fa-otter', icon7: 'fa-kiwi-bird', icon8: 'fa-bugs', icon9: 'fa-cat', 
         icon10: 'fa-cow', icon11: 'fa-dog', icon12: 'fa-dove', icon13: 'fa-bolt', icon14: 'fa-fish-fins', icon15: 'fa-frog', icon16: 'fa-horse', icon17: 'fa-horse-head', icon18: 'fa-locust', 
@@ -113,35 +115,98 @@ function shuffleArray(squaresArray, iconLimit) {
         [squaresArray[i], squaresArray[j]] = [squaresArray[j], squaresArray[i]];
     }
     
-   
-    let Pairs = new Set();  
+    
+
     for (let x = 1; x <= iconLimit; x++) {
         let removed = squaresArray.splice(0, 2);
         let id1 = removed[0];
         let id2 = removed[1];
         let icon = 'icon' + x;
         
-        
-         
-        Pairs.add(id1 + '+' + id2);
-        
+        // console.log('id1=',id1,' id2=',id2,'icon=',icon);
 
-       
+        pairs.push(`${id1}+${id2}`);
 
         document.getElementById(id1).innerHTML = '<div><i class="fa-solid ' + iconsObject[icon] + ' "></i></div>';
         document.getElementById(id2).innerHTML = '<div><i class="fa-solid ' + iconsObject[icon] + ' "></i></div>';
-        if (Pairs.size == iconLimit) {
-        matchingPairs(Pairs, ); // sends correct pair combinations to for interrogation 
-        } 
-        
-        
-
+        const myJSON = JSON.stringify(pairs); // sends correct pair combinations to for interrogation 
+        console.log(myJSON)
+    } 
     
 }
 
 
 
-}
+// class Car {
+//   constructor(name, year) {
+//     this.name = name;
+//     this.year = year;
+//   }
+// }
+
+// const myCar1 = new Car("Ford", 2014);
+// const myCar2 = new Car("Audi", 2019);
+
+
+
+
+
+
+
+
+
+
+// // moved above as has to be declared before called 
+// function CheckPairs(pairs) {
+  
+//   // wouldnt let me return array from function 
+
+// }
+
+
+
+
+
+
+
+
+// Create new Object
+        // const pair = Object.create(pairs);
+        // pair.idNum1 = id1;
+        // pair.idNum2 = id2;
+        // pair.iconNum = x;
+
+
+
+
+
+
+// create a class 
+
+
+// class Animal { 
+//   constructor(name) {
+//     this.name = name;
+//   }
+  
+//   speak() {
+//     console.log(this.name + ' says "Hello!"');
+//   }
+// }
+
+// let human = new Animal('John');
+// human.speak();  // logs 'John says "Hello!"
+
+
+
+// class Dog extends Animal {
+//   speak() {
+//     console.log(this.name + ' says "Woof!"');
+//   }
+// }
+
+// let myDog = new Dog('Fido');
+// myDog.speak();  // logs 'Fido says "Woof!"
 
 
 
@@ -161,59 +226,48 @@ function shuffleArray(squaresArray, iconLimit) {
 
 
 
-    var getTwo = [];
-    var clicks = 0;
-    function squareClicked(id) {
-        clicks += 1;
-        // console.log('clicks:', clicks);
-
-        
-        if (clicks === 1) {
-         var first = id.id;
-         getTwo.push(first);
-         document.getElementById(id.id).style.backgroundColor = 'yellow'; 
-        }
-        else if (clicks === 2) {
-        first = getTwo[0];
-        var second = id.id;
-        var result1 = first + '+' + second;
-        var result2 = second + '+' + first;
-        console.log('result1: ', result1, 'result2:', result2);
-        window.sessionStorage.setItem('check1', result1);
-        window.sessionStorage.setItem('check2', result2);
-        document.getElementById(id.id).style.backgroundColor = 'yellow'; 
-        } else {
-        clicks = 0;
-        getTwo = [];
-        document.getElementById(id.id).style.backgroundColor = 'red'; 
-        }
 
 
 
-        // if (getTwo.length < 2 && !getTwo.includes(id.id)) {
-
-
-    }
 
 
 
-    function matchingPairs(Pairs) {
 
-    console.log('pairs in MP', Pairs);
 
-    let check1 = window.sessionStorage.getItem('check1');
-    let check2 = window.sessionStorage.getItem('check2');
 
-    console.log('from SS / ck1', check1, 'ck2', check2 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+// var getTwo = []; 
+// function squareClicked(id) {
+//      // console.log(id);
+    
+//     console.log(id.id);
     
 
+//     if (getTwo.length < 2 && !getTwo.includes(id.id)) {
+//         console.log('less than 2 and doesnt contain same')
+//         document.getElementById(id.id).style.backgroundColor = 'yellow'; 
+//         getTwo.push(id.id);
+//         console.log('inside if', getTwo);
+//     } 
+    
+    
+//     return getTwo
+// }
 
 
-    }
-
-
-
+// console.log('outside func', getTwo)
 
 
 
