@@ -171,10 +171,12 @@ function shuffleArray(squaresArray, iconLimit) {
         if (pairedGreens.length > 1) { // reloads as green if user selects a already green box 
             for (let g = 0; g < pairedGreens.length; g++) {
                 document.getElementById(pairedGreens[g]).style.backgroundColor = "green";
+                console.log('PG length: ', pairedGreens.length)
             }
         }
 
-        if (clicks === 1) { // 
+
+        if (clicks === 1) { 
                 first = id.id;
                 console.log('first click: ', first);
                 document.getElementById(first).style.backgroundColor = "yellow";
@@ -196,34 +198,97 @@ function shuffleArray(squaresArray, iconLimit) {
 
         
         
-        let pairsArray = window.sessionStorage.getItem('pairsArray');
-        let s = 0, e = 5;
+                let pairsArray = window.sessionStorage.getItem('pairsArray');
+
+            
+       
+
+                let s = 0, e = 5;
 
                 for (let x = 1; x <= 50; x++) {
                  let pairs = pairsArray.slice(s, e);
                  
-                if (result1 == pairs || result2 == pairs) {
-                    document.getElementById(first).style.backgroundColor = 'green';
-                    document.getElementById(second).style.backgroundColor = 'green';
-                    pairedGreens.push(first, second);
-                    break;
-                } 
-                else if  (result1 !== pairs && result2 !== pairs && x == 50) {
-                    document.getElementById(first).style.backgroundColor = 'red';
-                    document.getElementById(second).style.backgroundColor = 'red';
-                    break;
-                }
-                else {
-                    s = s + 6;
-                    e = e + 6;
-                }
-            }
-        console.log('pairedGreens: ', pairedGreens);
-        clicks = 0;
+                    if (result1 == pairs || result2 == pairs) {
+                        document.getElementById(first).style.backgroundColor = 'green';
+                        document.getElementById(second).style.backgroundColor = 'green';
+                             // stop adding multiples so i can determine if game won 
+                        if (pairedGreens.includes(first) || pairedGreens.includes(second)) {   
+                            console.log('PG array already contains: ', first, ' + ', second)
+                        } else {
+                            pairedGreens.push(first, second); 
+                        }
+                        break;
 
+                    }          // make back ground red for wrong answers
+                    else if  (result1 !== pairs && result2 !== pairs && x == 50) {
+                        document.getElementById(first).style.backgroundColor = 'red';
+                        document.getElementById(second).style.backgroundColor = 'red';
+                        break;
+                    }
+                    else {
+                        s = s + 6;
+                        e = e + 6;
+                    }
+                }
+                        
+                        console.log('greens length: ', pairedGreens.length, 'pairs length: ', pairsArray.length);
+                            // 8x6 game complete checker, compares known array lengths 
+                        if (pairedGreens.length == 48 && pairsArray.length == 143) { 
+                                console.log('you won');
+                                let sorted = pairedGreens.sort(); 
+                                console.log('pg array sorted', sorted);
+
+                                // makes gold and black pattern
+                                for (let g = 0; g < pairedGreens.length; g++) {
+                                     document.getElementById(pairedGreens[g]).style.backgroundColor = 'gold';
+                                }
+                                let black = ['A1', 'A8', 'B3', 'B6', 'D3','D6','E3', 'E4', 'E5', 'E6', 'F1', 'F8']; 
+                                for (let b = 0; b < black.length; b++) {
+                                    document.getElementById(black[b]).style.backgroundColor = 'black';
+                                }
+
+                        }
+                         // 8x8  game complete checker, compares known array lengths 
+                        if (pairedGreens.length == 64 && pairsArray.length == 191) { 
+                                console.log('you won');
+                                let sorted = pairedGreens.sort(); 
+                                console.log('pg array sorted', sorted);
+
+                                // makes gold and black pattern
+                                for (let g = 0; g < pairedGreens.length; g++) {
+                                     document.getElementById(pairedGreens[g]).style.backgroundColor = 'gold';
+                                }
+                                let black = ['A1', 'A2', 'A7', 'A8', 'B1', 'B8', 'C3', 'C6', 'E3','E6','F3', 'F4', 'F5', 'F6', 'G1', 'G8', 'H1', 'H2', 'H7', 'H8']; 
+                                for (let b = 0; b < black.length; b++) {
+                                    document.getElementById(black[b]).style.backgroundColor = 'black';
+                                }
+
+                        }
+                        // 8x12  game complete checker, compares known array lengths 
+                        if (pairedGreens.length == 96 && pairsArray.length == 287) { 
+                                console.log('you won');
+                                let sorted = pairedGreens.sort(); 
+                                console.log('pg array sorted', sorted);
+
+                                // makes gold and black pattern
+                                for (let g = 0; g < pairedGreens.length; g++) {
+                                     document.getElementById(pairedGreens[g]).style.backgroundColor = 'gold';
+                                }
+                                let black = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'D1', 'D8', 'E1', 
+                                            'E8', 'F1', 'F2', 'F7', 'F8', 'G1', 'G2', 'G3', 'G6', 'G7', 'G8', 'H1', 'H2', 'H3', 'H6', 'H7', 'H8', 'I1', 'I2', 
+                                            'I3', 'I6', 'I7', 'I8', 'J1', 'J2', 'J3', 'J6', 'J7', 'J8', 'K1', 'K2', 'K7', 'K8']; 
+                                for (let b = 0; b < black.length; b++) {
+                                    document.getElementById(black[b]).style.backgroundColor = 'black';
+                                }
+
+                        }
+                        clicks = 0;
         }
 
         
+        
+
+
     }
 
 

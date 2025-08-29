@@ -44,7 +44,7 @@ body {
 
 .rotate {
     transform: rotateY(180deg);
-    margin-right: 5px;
+    margin-right: 3px;
 }
 
 .square {
