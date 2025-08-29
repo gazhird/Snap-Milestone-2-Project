@@ -12,6 +12,8 @@
 .mb-2 {
     margin-top: 20px;
 }
+
+
 .jcc {
     display: flex;
     justify-content: center;
@@ -35,7 +37,14 @@ body {
     background-color: aliceblue;
 }
 
+.grid {
+    min-width: 100%;
+}
 
+.rotate {
+    transform: rotateY(180deg);
+    margin-right: 9px;
+}
 
 .square {
     border: 2px solid black;
@@ -43,9 +52,6 @@ body {
     width: 38px;
 }
 
-.square:hover {
-background-color: yellow;
-}
 
 
 #game i {
@@ -53,6 +59,10 @@ background-color: yellow;
     font-size: 24px;
 }
 
+
+.yellow {
+    background-color: yellow;
+}
 
 
 /* Mobil M 375  */
@@ -101,38 +111,35 @@ background-color: yellow;
 /* Tablets and larger */
 @media screen and (min-width: 768px) {
     .square {
-    padding: 4px 6px 4px 4px;
-    height: 70px;
-    width: 70px;
+    height: 90px;
+    width: 90px;
     }
     #game i {
     padding: 4px 6px 4px 4px;
-    font-size: 42px;
+    font-size: 56px;
     }
 }
 
 /* Laptops and Desktops */
 @media screen and (min-width: 992px) {
     .square {
-    padding: 4px 6px 4px 4px;
-    height: 70px;
-    width: 70px;
+    height: 110px;
+    width: 110px;
     }
     #game i {
-    padding: 4px 6px 4px 4px;
-    font-size: 44px;
+    padding: 6px 6px 6px 6px;
+    font-size: 68px;
     }
 }
 
 /* Large Desktops, Tv screens & Projectors */
 @media screen and (min-width: 1200px) {
     .square {
-    padding: 4px 6px 4px 4px;
-    height: 70px;
-    width: 70px;
+    height: 110px;
+    width: 110px;
     }
     #game i {
-    padding: 4px 6px 4px 4px;
-    font-size: 44px;
+    padding: 6px 6px 6px 6px;
+    font-size: 84px;
     }
 }

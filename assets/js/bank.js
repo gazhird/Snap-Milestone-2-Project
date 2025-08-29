@@ -246,28 +246,164 @@ function shuffleArray(squaresArray, iconLimit) {
 
 
 
+   var getTwo = [], paired = [];  
+    var clicks = 0;
+    function squareClicked(id) {
+        clicks += 1;
+        console.log('clicks:', clicks);
+        if (clicks === 1) {
+        
+         var first = id.id;
+         console.log('first click: ', first)
+         getTwo.push(first);
+         document.getElementById(first).style.backgroundColor = 'yellow';
+        }
+        else if (clicks === 2) {
+        first = getTwo[0];
+        var second = id.id;
+        console.log('second click: ', second)
+        var result1 = first + '+' + second;
+        var result2 = second + '+' + first;
+        window.sessionStorage.setItem('check1', result1);
+        window.sessionStorage.setItem('check2', result2);
+        document.getElementById(second).style.backgroundColor = 'yellow';
+        let pairsArray = window.sessionStorage.getItem('pairsArray');
+        let check1 = window.sessionStorage.getItem('check1');
+        let check2 = window.sessionStorage.getItem('check2');
+
+            let s = 0, e = 5;
+
+            for (let x = 1; x <= 50; x++) {
+                 let pairs = pairsArray.slice(s, e);
+                 
+                if (check1 == pairs || check2 == pairs) {
+                    document.getElementById(first).style.backgroundColor = 'green';
+                    document.getElementById(second).style.backgroundColor = 'green';
+                    paired.push(first, second);
+                    break;
+                } 
+                else if  (check1 !== pairs && check2 !== pairs && x == 50) {
+                    document.getElementById(first).style.backgroundColor = 'red';
+                    document.getElementById(second).style.backgroundColor = 'red';
+                    break;
+                }
+                else {
+                    s = s + 6;
+                    e = e + 6;
+                }
+            }
+            clicks = 0;
+        }
+        else {
+        document.getElementById(first).style.backgroundColor = 'white';
+        document.getElementById(second).style.backgroundColor = 'white';
+        }
+        console.log('paired: ', paired);
+
+        console.log('after first: ', first);
+        console.log('after second: ', second);
+    }
 
 
-// var getTwo = []; 
-// function squareClicked(id) {
-//      // console.log(id);
+
+
+
+
+
     
-//     console.log(id.id);
-    
-
-//     if (getTwo.length < 2 && !getTwo.includes(id.id)) {
-//         console.log('less than 2 and doesnt contain same')
-//         document.getElementById(id.id).style.backgroundColor = 'yellow'; 
-//         getTwo.push(id.id);
-//         console.log('inside if', getTwo);
-//     } 
-    
-    
-//     return getTwo
-// }
-
-
-// console.log('outside func', getTwo)
+                    // document.getElementById(first).style.backgroundColor = 'red';
+                    // document.getElementById(second).style.backgroundColor = 'red';
+                    // setTimeout(function(){
+                    // document.getElementById(first).style.backgroundColor = 'white';
+                    // document.getElementById(second).style.backgroundColor = 'white';
+                    // first = '';
+                    // second = '';
+                    // }, 1000);
 
 
 
+                    // for (let i = 0; i <= 5; i++) {
+                    // setInterval(function () {
+                    // document.getElementById(first).style.backgroundColor = 'red'
+                    // document.getElementById(second).style.backgroundColor = 'red'}, 2000);
+                    // // setInterval(function () {
+                    // // document.getElementById(first).style.backgroundColor = 'white'
+                    // // document.getElementById(second).style.backgroundColor = 'white'}, 1000);
+                    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var first = '', second = '', oldFirst = '', oldSecond = '', result1, result2;
+    // var getTwo = [], pairedGreens = [];  
+
+    // var clicks = 0;
+    // function squareClicked(id) {
+    //     clicks += 1;
+    //     oldFirst = first;
+    //     oldSecond = second; 
+
+    //     if (clicks === 1) {
+    //         if (!pairedGreens.includes(id.id)) {
+    //             first = id.id;
+    //             console.log('first click: ', first);
+    //             document.getElementById(first).style.backgroundColor = "yellow";
+    //         }
+
+            
+    //         if (oldFirst != '' && !pairedGreens.includes(oldFirst)) {
+    //             document.getElementById(oldFirst).style.backgroundColor = "white";
+    //         }
+    //         if (oldSecond != '' && !pairedGreens.includes(oldSecond)) {
+    //             document.getElementById(oldSecond).style.backgroundColor = "white";
+    //         }
+    //     }
+
+    //     else if (clicks === 2) {
+    //         if (!pairedGreens.includes(id.id)) {
+    //             second = id.id;
+    //             console.log('second click: ', second);
+    //             document.getElementById(second).style.backgroundColor = "yellow";
+    //             result1 = first + '+' + second;
+    //             result2 = second + '+' + first;
+    //         }
+        
+        
+    //     let pairsArray = window.sessionStorage.getItem('pairsArray');
+    //     let s = 0, e = 5;
+
+    //             for (let x = 1; x <= 50; x++) {
+    //              let pairs = pairsArray.slice(s, e);
+                 
+    //             if (result1 == pairs || result2 == pairs) {
+    //                 document.getElementById(first).style.backgroundColor = 'green';
+    //                 document.getElementById(second).style.backgroundColor = 'green';
+    //                 pairedGreens.push(first, second);
+    //                 break;
+    //             } 
+    //             else if  (result1 !== pairs && result2 !== pairs && x == 50) {
+    //                 document.getElementById(first).style.backgroundColor = 'red';
+    //                 document.getElementById(second).style.backgroundColor = 'red';
+    //                 break;
+    //             }
+    //             else {
+    //                 s = s + 6;
+    //                 e = e + 6;
+    //             }
+    //         }
+    //     console.log('pairedGreens: ', pairedGreens);
+    //     clicks = 0;
+        
+    //     }
+    // }
